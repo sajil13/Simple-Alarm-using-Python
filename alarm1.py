@@ -1,11 +1,13 @@
 import time
 import datetime
-
-from tkinter import *
-
-from tkinter import messagebox
-hr,minu = input("Set the time for the alarm in hh:mm format").split(":")
-
+import win32api
+str1 = input("What is the alarm for: ")
+hr,minu = input("Set the time for the alarm in hh:mm format ").split(":")
+t = datetime.datetime.now()
+if t.second == 0:
+    pass
+else:
+    time.sleep(60-t.second)
 while True:
     
     now  = datetime.datetime.now()
@@ -13,5 +15,6 @@ while True:
     cr_min = now.minute
     
     if cr_hr == int(hr) and cr_min == int(minu):
-        messagebox.showinfo("Alert","Times Up Buddy!! Get Up")
-    time.sleep(3600)
+        win32api.MessageBox(0,str1,"Alert",0x00001000)
+        break
+    time.sleep(60)
